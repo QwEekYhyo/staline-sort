@@ -3,7 +3,7 @@
 
 void print_array(int* arr, size_t length) {
     printf("{ ");
-    int i;
+    size_t i;
     for (i = 0; i < length - 1; i++) {
         printf("%d, ", arr[i]);
     }
@@ -17,7 +17,7 @@ int* random_array(size_t length) {
         exit(1);
     }
 
-    for (int i = 0; i < length; i++) {
+    for (size_t i = 0; i < length; i++) {
         array[i] = rand() % 50;
     }
 
