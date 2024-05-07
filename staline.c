@@ -1,6 +1,4 @@
-#include "utils.h"
-#include <stdlib.h>
-#include <time.h>
+#include "staline.h"
 
 int* staline_sort_copy(int* arr, size_t* length) {
     int* temp = malloc(*length * sizeof(int));
@@ -17,18 +15,15 @@ int* staline_sort_copy(int* arr, size_t* length) {
     return temp;
 }
 
-int main() {
-    srand(time(NULL));
-
-    size_t array_length = 7;
-    int* array = random_array(array_length);
-    print_array(array, array_length);
-
-    int* sorted_array = staline_sort_copy(array, &array_length);
-    print_array(sorted_array, array_length);
-
-    free(array);
-    free(sorted_array);
-
-    return 0;
+void staline_sort_in_place(int* arr, size_t* length) {
+    int current = 0;
+    for (int i = 1; i < *length; i++) {
+        if (arr[i] >= arr[current] && ++current != i) {
+            // arithmetic swap
+            arr[current] = arr[current] + arr[i];
+            arr[i] = arr[current] - arr[i];
+            arr[current] = arr[current] - arr[i];
+        }
+    }
+    *length = current + 1;
 }
